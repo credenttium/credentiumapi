@@ -1,11 +1,12 @@
 package br.com.quintinnodigital.credentiumapi.controller;
 
-import br.com.quintinnodigital.credentiumapi.entity.PlataformaEntity;
-import br.com.quintinnodigital.credentiumapi.service.PlataformaService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.quintinnodigital.credentiumapi.entity.PlataformaEntity;
+import br.com.quintinnodigital.credentiumapi.service.PlataformaService;
 
 @RestController
 @RequestMapping("/plataforma")
