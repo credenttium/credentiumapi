@@ -1,5 +1,8 @@
 package br.com.quintinnodigital.credentiumapi.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,11 @@ public class PlataformaController {
     @PostMapping
     public PlataformaEntity create(@RequestBody PlataformaEntity plataformaEntity) {
         return this.plataformaService.create(plataformaEntity);
+    }
+
+    @GetMapping
+    public List<PlataformaEntity> findAll() {
+        return this.plataformaService.findAll();
     }
 
 }
