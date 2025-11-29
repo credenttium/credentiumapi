@@ -1,5 +1,6 @@
 package br.com.quintinnodigital.credentiumapi.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.MediaType;
@@ -29,13 +30,16 @@ public class PlataformaController {
 	public PlataformaEntity create(
 			@RequestPart("nome") String nome, 
 			@RequestPart(value = "url", required = false) String url, 
-			@RequestPart(value = "file", required = false) MultipartFile multipartFile) {
-		PlataformaEntity plataformaEntity = new PlataformaEntity();
-			plataformaEntity.setNome(nome);
-			plataformaEntity.setUrl(url);
+			@RequestPart(value = "logomarca", required = false) MultipartFile multipartFile) {
+		
+		PlataformaEntity plataformaEntity = new PlataformaEntity(nome, url);
 
 		if (multipartFile != null && !multipartFile.isEmpty()) {
-//			String fileName = multipartFile.getOriginalFilename();
+			try {
+				plataformaEntity.setLogomarca(multipartFile.getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return this.plataformaService.create(plataformaEntity);

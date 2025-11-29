@@ -18,6 +18,9 @@ public class PlataformaEntity {
 
     @Column(name = "url")
     public String url;
+    
+    @Lob
+    private byte[] logomarca;
 
     @Column(name = "created_at")
     public LocalDateTime createdAt;
@@ -38,6 +41,11 @@ public class PlataformaEntity {
 	public PlataformaEntity(Long code, String nome) {
 		this.code = code;
 		this.nome = nome;
+	}
+
+	public PlataformaEntity(String nome, String url) {
+		this.nome = nome;
+		this.url = url;
 	}
 
 	public PlataformaEntity() {
@@ -70,7 +78,15 @@ public class PlataformaEntity {
         this.url = url;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public byte[] getLogomarca() {
+		return logomarca;
+	}
+
+	public void setLogomarca(byte[] logomarca) {
+		this.logomarca = logomarca;
+	}
+
+	public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
