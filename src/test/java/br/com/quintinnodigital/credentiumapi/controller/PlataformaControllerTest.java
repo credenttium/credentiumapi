@@ -24,16 +24,13 @@ public class PlataformaControllerTest {
     @Test
     void createPlataformaComSucesso() {
 
-        PlataformaEntity plataformaEntity = new PlataformaEntity();
-            plataformaEntity.setNome("Plataforma Teste");
+        PlataformaEntity plataformaEntityPersistencia = new PlataformaEntity(1L, "Plataforma Teste");
 
-        PlataformaEntity plataformaEntityPersistencia = new PlataformaEntity();
-            plataformaEntityPersistencia.setCode(1L);
-            plataformaEntityPersistencia.setNome("Plataforma Teste");
+//        Mockito.when(plataformaService.create(plataformaEntity)).thenReturn(plataformaEntityPersistencia);
+        
+        Mockito.when(plataformaService.create(Mockito.any(PlataformaEntity.class))).thenReturn(plataformaEntityPersistencia);
 
-        Mockito.when(plataformaService.create(plataformaEntity)).thenReturn(plataformaEntityPersistencia);
-
-        PlataformaEntity plataformaEntitySalvo = plataformaController.create(plataformaEntity);
+        PlataformaEntity plataformaEntitySalvo = plataformaController.create("Plataforma Teste", "http://url-da-logo.com/logo.png", null);
 
         assertNotNull(plataformaEntitySalvo);
         

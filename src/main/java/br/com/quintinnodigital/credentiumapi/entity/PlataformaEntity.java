@@ -31,7 +31,16 @@ public class PlataformaEntity {
     @Column(name = "active")
     public Boolean active;
 
-    public PlataformaEntity() {
+    public PlataformaEntity(String nome) {
+		this.nome = nome;
+	}
+
+	public PlataformaEntity(Long code, String nome) {
+		this.code = code;
+		this.nome = nome;
+	}
+
+	public PlataformaEntity() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
         this.active = true;
