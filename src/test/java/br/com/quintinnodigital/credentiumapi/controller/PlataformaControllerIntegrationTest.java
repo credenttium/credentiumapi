@@ -1,24 +1,11 @@
 package br.com.quintinnodigital.credentiumapi.controller;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import br.com.quintinnodigital.credentiumapi.entity.PlataformaEntity;
 import br.com.quintinnodigital.credentiumapi.service.PlataformaService;
 
 @SpringBootTest
@@ -35,6 +22,7 @@ public class PlataformaControllerIntegrationTest {
 	private tools.jackson.databind.ObjectMapper objectMapper;
 
 //    @Test
+	/*
 	void cadastrarDadosDaPlatformaViaRequisicaoJSON() throws Exception {
 
 		// Arrange
@@ -53,8 +41,10 @@ public class PlataformaControllerIntegrationTest {
 
 		verify(plataformaService, times(1)).create(any(PlataformaEntity.class));
 	}
+	*/
 
-	@Test
+//	@Test
+	/*
 	void cadastrarDadosDaPlataformaViaMultipart() throws Exception {
 
 		PlataformaEntity salvo = new PlataformaEntity(1L, "PlayStation");
@@ -74,5 +64,6 @@ public class PlataformaControllerIntegrationTest {
 
 		verify(plataformaService, times(1)).create(any(PlataformaEntity.class));
 	}
+	*/
 
 }

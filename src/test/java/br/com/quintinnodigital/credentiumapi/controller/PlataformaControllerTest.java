@@ -1,5 +1,6 @@
 package br.com.quintinnodigital.credentiumapi.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -11,29 +12,36 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.quintinnodigital.credentiumapi.entity.PlataformaEntity;
 import br.com.quintinnodigital.credentiumapi.service.PlataformaService;
+import br.com.quintinnodigital.credentiumapi.transfer.PlataformaResponseTransfer;
 
 @ExtendWith(MockitoExtension.class)
 public class PlataformaControllerTest {
 
-    @Mock
-    private PlataformaService plataformaService;
+	@InjectMocks
+	private PlataformaController plataformaController;
 
-    @InjectMocks
-    private PlataformaController plataformaController;
+	@Mock
+	private PlataformaService plataformaService;
 
-    @Test
-    void createPlataformaComSucesso() {
+	@Test
+	void createPlataformaComSucesso() {
 
-        PlataformaEntity plataformaEntityPersistencia = new PlataformaEntity(1L, "Plataforma Teste");
+		String nome = "Plataforma Teste";
+		String url = "http://url-da-logo.com/logo.png";
 
-//        Mockito.when(plataformaService.create(plataformaEntity)).thenReturn(plataformaEntityPersistencia);
-        
-        Mockito.when(plataformaService.create(Mockito.any(PlataformaEntity.class))).thenReturn(plataformaEntityPersistencia);
+		PlataformaResponseTransfer respostaMock = new PlataformaResponseTransfer();
+		respostaMock.setCode("1");
+		respostaMock.setNome(nome);
+		respostaMock.setUrl(url);
 
-        PlataformaEntity plataformaEntitySalvo = plataformaController.create("Plataforma Teste", "http://url-da-logo.com/logo.png", null);
+		Mockito.when(plataformaService.create(Mockito.any(PlataformaEntity.class))).thenReturn(respostaMock);
 
-        assertNotNull(plataformaEntitySalvo);
-        
-    }
+		PlataformaResponseTransfer response = plataformaController.create(nome, url, null);
+
+		assertNotNull(response);
+		assertEquals("Plataforma Teste", response.getNome());
+		assertEquals("http://url-da-logo.com/logo.png", response.getUrl());
+
+	}
 
 }
