@@ -1,8 +1,14 @@
 package br.com.quintinnodigital.credentiumapi.entity;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_plataforma")
@@ -22,8 +28,8 @@ public class PlataformaEntity {
     @Lob
     private byte[] logomarca;
 
-    @Column(name = "created_at")
-    public LocalDateTime createdAt;
+    @Column(name = "created_at", nullable = false)
+    public LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "update_at")
     public LocalDateTime updatedAt;
@@ -32,7 +38,9 @@ public class PlataformaEntity {
     public LocalDateTime deletedAt;
 
     @Column(name = "active")
-    public Boolean active;
+    public Boolean active = true;
+    
+    public PlataformaEntity() {}
 
     public PlataformaEntity(String nome) {
 		this.nome = nome;
@@ -47,12 +55,6 @@ public class PlataformaEntity {
 		this.nome = nome;
 		this.url = url;
 	}
-
-	public PlataformaEntity() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-        this.active = true;
-    }
 
     public Long getCode() {
         return code;
