@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.quintinnodigital.credentiumapi.entity.PlataformaEntity;
 import br.com.quintinnodigital.credentiumapi.service.PlataformaService;
+import br.com.quintinnodigital.credentiumapi.transfer.PlataformaResponseTransfer;
 
 @RestController
 @RequestMapping("/plataforma")
@@ -27,7 +28,7 @@ public class PlataformaController {
 	}
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public PlataformaEntity create(
+	public PlataformaResponseTransfer create(
 			@RequestPart("nome") String nome, 
 			@RequestPart(value = "url", required = false) String url, 
 			@RequestPart(value = "logomarca", required = false) MultipartFile multipartFile) {
@@ -46,7 +47,7 @@ public class PlataformaController {
 	}
 
 	@GetMapping
-	public List<PlataformaEntity> findAll() {
+	public List<PlataformaResponseTransfer> findAll() {
 		return this.plataformaService.findAll();
 	}
 

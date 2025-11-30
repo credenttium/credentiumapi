@@ -1,11 +1,13 @@
 package br.com.quintinnodigital.credentiumapi.service;
 
-import br.com.quintinnodigital.credentiumapi.entity.PlataformaEntity;
-import br.com.quintinnodigital.credentiumapi.repostory.PlataformaRepository;
-
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import br.com.quintinnodigital.credentiumapi.entity.PlataformaEntity;
+import br.com.quintinnodigital.credentiumapi.mapper.PlataformaMapper;
+import br.com.quintinnodigital.credentiumapi.repostory.PlataformaRepository;
+import br.com.quintinnodigital.credentiumapi.transfer.PlataformaResponseTransfer;
 
 @Service
 public class PlataformaService {
@@ -16,12 +18,12 @@ public class PlataformaService {
         this.plataformaRepository = plataformaRepository;
     }
 
-    public PlataformaEntity create(PlataformaEntity plataformaEntity) {
-        return this.plataformaRepository.save(plataformaEntity);
+    public PlataformaResponseTransfer create(PlataformaEntity plataformaEntity) {
+        return PlataformaMapper.toPlataformaTransfer(this.plataformaRepository.save(plataformaEntity));
     }
 
-    public List<PlataformaEntity> findAll() {
-        return this.plataformaRepository.findAll();
+    public List<PlataformaResponseTransfer> findAll() {
+        return PlataformaMapper.toPlataformaTransfer(this.plataformaRepository.findAll());
     }
 
 }
