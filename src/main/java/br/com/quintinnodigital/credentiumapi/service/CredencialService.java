@@ -25,4 +25,8 @@ public class CredencialService {
 		return this.credencialRepository.findAll();
 	}
 	
+	public CredencialEntity findOne(Long codigoCredencial) {
+		return this.credencialRepository.findById(codigoCredencial).get();
+	}
+	
 }
