@@ -1,13 +1,15 @@
-FROM maven:3.9.11-eclipse-temurin-21-alpine AS build
+FROM maven:3.9.11-eclipse-temurin-21 AS build
 
-COPY . .
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
 
-RUN mvn clean install package -DskipTests
+RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin-21-alpine
+FROM eclipse-temurin:21-jre
 
-COPY --from=build target/credentium-service.jar
+WORKDIR /app
+COPY --from=build /app/target/credentium-service.jar /app/credentium-service.jar
 
 EXPOSE 8080
-
-CMD ["java", "-jar", "credentium-service.jar"]
+CMD ["java", "-jar", "/app/credentium-service.jar"]
