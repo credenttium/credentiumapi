@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: credentium
+      changes:
+
+        - createSequence:
+            sequenceName: seq_tb_credencial_code
+
+        - createTable:
+            tableName: tb_credencial
+            columns:
+              - column:
+                  name: code
+                  type: BIGINT
+                  defaultValueSequenceNext: seq_tb_credencial_code
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: id_plataforma
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: descricao
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: usuario
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: senha
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: link
+                  type: VARCHAR(500)
+
+              - column:
+                  name: update_at
+                  type: DATETIME
+
+              - column:
+                  name: deleted_at
+                  type: DATETIME
+
+              - column:
+                  name: active
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+
+        - addForeignKeyConstraint:
+            baseTableName: tb_credencial
+            baseColumnNames: id_plataforma
+            referencedTableName: tb_plataforma
+            referencedColumnNames: code
+            constraintName: fk_credencial_plataforma
+            onDelete: CASCADE

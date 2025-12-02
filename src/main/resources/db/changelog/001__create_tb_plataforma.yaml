@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: credentium
+      changes:
+        - createTable:
+            tableName: tb_plataforma
+            columns:
+              - column:
+                  name: code
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: nome
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: url
+                  type: VARCHAR(255)
+
+              - column:
+                  name: logomarca
+                  type: BLOB
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: update_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: active
+                  type: BOOLEAN
+                  defaultValueBoolean: true

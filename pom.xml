@@ -13,7 +13,7 @@
 	
 	<groupId>br.com.quintinnodigital</groupId>
 	<artifactId>credentiumapi</artifactId>
-	<version>v0.0.1</version>
+	<version>v1.0.0.0</version>
 	<name>Credentium</name>
 	<description>Sistema de Gestão de Credenciais</description>
 	

@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/001__create_tb_plataforma.yaml
+      relativeToChangelogFile: false
+  - include:
+      file: db/changelog/002__create_tb_credencial.yaml
+      relativeToChangelogFile: false
