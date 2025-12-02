@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  credentium-database:
+    image: postgres:16
+    container_name: credentium-database
+    environment:
+      POSTGRES_DB: db_credentium_homologacao
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  app:
+    build: .
+    container_name: credentium-service
+    depends_on:
+      - credentium-database
+    ports:
+      - "8080:8080"
+    environment:
+      CREDENTIUM_DATASOURCE_URL: jdbc:postgresql://credentium-database:5432/db_credentium_homologacao
+      CREDENTIUM_DATASOURCE_USERNAME: postgres
+      CREDENTIUM_DATASOURCE_PASSWORD: postgres
+
+volumes:
+  pgdata:

@@ -1,5 +1,6 @@
-docker build -t credentium-service .
+docker compose down
 
-docker run -d -p 8080:8080 --name container-docker credentium-service
+docker stop f90ce909d9ca
+docker rm f90ce909d9ca
 
-docker build -t credentium-service .
+docker compose up -d --build
