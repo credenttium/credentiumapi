@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: credentium
+      changes:
+
+        - createTable:
+            tableName: tb_usuario_perfil
+            columns:
+              - column:
+                  name: code
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: id_usuario
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    
+              - column:
+                  name: id_perfil
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: active
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  
+        - addForeignKeyConstraint:
+            baseTableName: tb_usuario_perfil
+            baseColumnNames: id_usuario
+            referencedTableName: tb_usuario
+            referencedColumnNames: code
+            constraintName: fk_usuario_perfil_2
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: tb_usuario_perfil
+            baseColumnNames: id_perfil
+            referencedTableName: tb_perfil
+            referencedColumnNames: code
+            constraintName: fk_usuario_perfil_1
+            onDelete: CASCADE

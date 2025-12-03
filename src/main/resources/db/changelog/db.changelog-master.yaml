@@ -5,3 +5,12 @@ databaseChangeLog:
   - include:
       file: db/changelog/002__create_tb_credencial.yaml
       relativeToChangelogFile: false
+  - include:
+      file: db/changelog/003__create_tb_perfil.yaml
+      relativeToChangelogFile: false
+  - include:
+      file: db/changelog/004__create_tb_usuario.yaml
+      relativeToChangelogFile: false
+  - include:
+      file: db/changelog/005__create_tb_usuario_perfil.yaml
+      relativeToChangelogFile: false

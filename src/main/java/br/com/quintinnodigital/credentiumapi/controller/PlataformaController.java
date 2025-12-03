@@ -18,7 +18,7 @@ import br.com.quintinnodigital.credentiumapi.transfer.PlataformaResponseTransfer
 
 @RestController
 @RequestMapping("/plataforma")
-@CrossOrigin
+@CrossOrigin("*")
 public class PlataformaController {
 
 	private final PlataformaService plataformaService;
