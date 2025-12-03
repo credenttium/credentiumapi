@@ -31,7 +31,7 @@ public class PlataformaEntity {
     @Column(name = "created_at", nullable = false)
     public LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(name = "update_at")
+    @Column(name = "updated_at")
     public LocalDateTime updatedAt;
 
     @Column(name = "deleted_at")

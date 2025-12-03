@@ -26,9 +26,6 @@ public class CredencialEntity implements Serializable {
     @Column(name = "code", updatable = false, nullable = false)
     public Long code;
 	
-    @Column(name = "created_at", nullable = false)
-    public LocalDateTime createdAt = LocalDateTime.now();
-    
     @ManyToOne
     @JoinColumn(name = "id_plataforma", nullable = false)
     @JsonProperty("plataforma")
@@ -45,8 +42,11 @@ public class CredencialEntity implements Serializable {
     
     @Column(name = "link", length = 500)
     private String link;
+    
+    @Column(name = "created_at", nullable = false)
+    public LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(name = "update_at")
+    @Column(name = "updated_at")
     public LocalDateTime updatedAt;
 
     @Column(name = "deleted_at")

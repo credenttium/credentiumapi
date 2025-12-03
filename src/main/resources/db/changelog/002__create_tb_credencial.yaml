@@ -4,23 +4,21 @@ databaseChangeLog:
       author: credentium
       changes:
 
-        - createSequence:
-            sequenceName: seq_tb_credencial_code
-
         - createTable:
             tableName: tb_credencial
             columns:
               - column:
                   name: code
                   type: BIGINT
-                  defaultValueSequenceNext: seq_tb_credencial_code
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
 
               - column:
                   name: created_at
-                  type: DATETIME
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
                     nullable: false
 
@@ -53,12 +51,13 @@ databaseChangeLog:
                   type: VARCHAR(500)
 
               - column:
-                  name: update_at
-                  type: DATETIME
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
 
               - column:
                   name: deleted_at
-                  type: DATETIME
+                  type: TIMESTAMP
 
               - column:
                   name: active
