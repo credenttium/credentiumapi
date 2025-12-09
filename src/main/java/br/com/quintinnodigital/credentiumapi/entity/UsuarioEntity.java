@@ -2,6 +2,13 @@ package br.com.quintinnodigital.credentiumapi.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
+
+import org.jspecify.annotations.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_usuario")
-public class UsuarioEntity implements Serializable {
+public class UsuarioEntity implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -20,6 +27,9 @@ public class UsuarioEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "code", updatable = false, nullable = false)
 	private Long code;
+	
+	@Column(name = "code_public", unique = true, nullable = false)
+    private String codePublic = UUID.randomUUID().toString();
 
     @Column(name = "nome", unique = true, nullable = false)
     private String nome;
@@ -29,6 +39,9 @@ public class UsuarioEntity implements Serializable {
     
     @Column(name = "senha", length = 255, nullable = false)
     private String senha;
+    
+    @Column(name = "token", unique = true, length = 255)
+    private String token;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -43,6 +56,21 @@ public class UsuarioEntity implements Serializable {
     private Boolean active = true;
     
     public UsuarioEntity() {}
+    
+    @Override
+	public String getUsername() {
+		return this.usuario;
+	}
+
+	@Override
+	public @Nullable String getPassword() {
+		return this.senha;
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of();
+	}
 
 	public Long getCode() {
 		return code;
@@ -58,6 +86,14 @@ public class UsuarioEntity implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCodePublic() {
+		return codePublic;
+	}
+
+	public void setCodePublic(String codePublic) {
+		this.codePublic = codePublic;
 	}
 
 	public String getUsuario() {
@@ -110,6 +146,14 @@ public class UsuarioEntity implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }
