@@ -1,5 +1,3 @@
-### Recuperar Plataformas
-GET http://localhost:8080/plataforma
-
-### Registrar Usuário
-POST http://localhost:8080/pletaforma
+# GIT
+git config --global user.name "Credentium (Desenvolvimento)"
+git config --global user.email "credentium@outlook.com.br"
